@@ -1,11 +1,12 @@
-export TARGET = iphone:11.1:9.0
-export ARCHS = arm64
+# export TARGET = iphone:11.1:9.0
+export TARGET = iphone:clang:11.2:9.0
+export ARCHS = arm64 arm64e
 include $(THEOS)/makefiles/common.mk
 
 # Relevant folders
 PROJECT_SRC = TBTweakViewController/TBTweakViewController/Classes
 PODS_ROOT = TBTweakViewController/Pods
-MK_DIR = /Users/tanner/Repos/MirrorKit/MirrorKit
+MK_DIR = $(PODS_ROOT)/MirrorKit/MirrorKit
 
 # Swizzle sources and all dependency sources
 MY_SOURCES =     $(wildcard $(PROJECT_SRC)/*.m)

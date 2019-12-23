@@ -11,14 +11,14 @@
 
 @implementation MAS_VIEW (MASAdditions)
 
-- (NSArray *)mas__makeConstraints:(void(^)(SWZConstraintMaker *))block {
+- (NSArray *)mas__makeConstraints:(void(NS_NOESCAPE ^)(SWZConstraintMaker *))block {
     self.translatesAutoresizingMaskIntoConstraints = NO;
     SWZConstraintMaker *constraintMaker = [[SWZConstraintMaker alloc] initWithView:self];
     block(constraintMaker);
     return [constraintMaker install];
 }
 
-- (NSArray *)mas__updateConstraints:(void(^)(SWZConstraintMaker *))block {
+- (NSArray *)mas__updateConstraints:(void(NS_NOESCAPE ^)(SWZConstraintMaker *))block {
     self.translatesAutoresizingMaskIntoConstraints = NO;
     SWZConstraintMaker *constraintMaker = [[SWZConstraintMaker alloc] initWithView:self];
     constraintMaker.updateExisting = YES;
@@ -26,7 +26,7 @@
     return [constraintMaker install];
 }
 
-- (NSArray *)mas__remakeConstraints:(void(^)(SWZConstraintMaker *make))block {
+- (NSArray *)mas__remakeConstraints:(void(NS_NOESCAPE ^)(SWZConstraintMaker *make))block {
     self.translatesAutoresizingMaskIntoConstraints = NO;
     SWZConstraintMaker *constraintMaker = [[SWZConstraintMaker alloc] initWithView:self];
     constraintMaker.removeExisting = YES;

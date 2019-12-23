@@ -1,6 +1,6 @@
 //
 //  NSArray+MASAdditions.m
-//  
+//
 //
 //  Created by Daniel Hammond on 11/26/13.
 //
@@ -11,7 +11,7 @@
 
 @implementation NSArray (MASAdditions)
 
-- (NSArray *)mas__makeConstraints:(void(^)(SWZConstraintMaker *make))block {
+- (NSArray *)mas__makeConstraints:(void(NS_NOESCAPE ^)(SWZConstraintMaker *make))block {
     NSMutableArray *constraints = [NSMutableArray array];
     for (MAS_VIEW *view in self) {
         NSAssert([view isKindOfClass:[MAS_VIEW class]], @"All objects in the array must be views");
@@ -20,7 +20,7 @@
     return constraints;
 }
 
-- (NSArray *)mas__updateConstraints:(void(^)(SWZConstraintMaker *make))block {
+- (NSArray *)mas__updateConstraints:(void(NS_NOESCAPE ^)(SWZConstraintMaker *make))block {
     NSMutableArray *constraints = [NSMutableArray array];
     for (MAS_VIEW *view in self) {
         NSAssert([view isKindOfClass:[MAS_VIEW class]], @"All objects in the array must be views");
@@ -29,7 +29,7 @@
     return constraints;
 }
 
-- (NSArray *)mas__remakeConstraints:(void(^)(SWZConstraintMaker *make))block {
+- (NSArray *)mas__remakeConstraints:(void(NS_NOESCAPE ^)(SWZConstraintMaker *make))block {
     NSMutableArray *constraints = [NSMutableArray array];
     for (MAS_VIEW *view in self) {
         NSAssert([view isKindOfClass:[MAS_VIEW class]], @"All objects in the array must be views");
@@ -43,7 +43,7 @@
         NSAssert(self.count>1,@"views to distribute need to bigger than one");
         return;
     }
-    
+
     MAS_VIEW *tempSuperView = [self mas__commonSuperviewOfViews];
     if (axisType == MASAxisTypeHorizontal) {
         MAS_VIEW *prev;
@@ -60,7 +60,7 @@
                 else {//first one
                     make.left.equalTo(tempSuperView).offset(leadSpacing);
                 }
-                
+
             }];
             prev = v;
         }
@@ -75,12 +75,12 @@
                     make.top.equalTo(prev.mas__bottom).offset(fixedSpacing);
                     if (i == self.count - 1) {//last one
                         make.bottom.equalTo(tempSuperView).offset(-tailSpacing);
-                    }                    
+                    }
                 }
                 else {//first one
                     make.top.equalTo(tempSuperView).offset(leadSpacing);
                 }
-                
+
             }];
             prev = v;
         }
@@ -92,7 +92,7 @@
         NSAssert(self.count>1,@"views to distribute need to bigger than one");
         return;
     }
-    
+
     MAS_VIEW *tempSuperView = [self mas__commonSuperviewOfViews];
     if (axisType == MASAxisTypeHorizontal) {
         MAS_VIEW *prev;

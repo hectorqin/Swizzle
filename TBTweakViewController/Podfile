@@ -1,7 +1,8 @@
 inhibit_all_warnings!
 
 target 'TBTweakViewController' do
-  pod 'MirrorKit', :path => '../../../MirrorKit'
+  # pod 'MirrorKit', :path => '../MirrorKit'
+  pod 'MirrorKit', :git => 'https://github.com/NSExceptional/MirrorKit.git', :branch => '2.0'
   pod 'TBAlertController'
   pod 'Masonry', :path => 'Pods/Masonry'
 end

@@ -5,24 +5,30 @@ PODS:
 
 DEPENDENCIES:
   - Masonry (from `Pods/Masonry`)
-  - MirrorKit (from `../../../MirrorKit`)
+  - MirrorKit (from `https://github.com/NSExceptional/MirrorKit.git`, branch `2.0`)
   - TBAlertController
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - TBAlertController
 
 EXTERNAL SOURCES:
   Masonry:
     :path: Pods/Masonry
   MirrorKit:
-    :path: "../../../MirrorKit"
+    :branch: '2.0'
+    :git: https://github.com/NSExceptional/MirrorKit.git
+
+CHECKOUT OPTIONS:
+  MirrorKit:
+    :commit: 9ddfaea738744706220da689d6114d994e51f245
+    :git: https://github.com/NSExceptional/MirrorKit.git
 
 SPEC CHECKSUMS:
-  Masonry: e46236481fe92050860ceef9cbe765c09da6541e
-  MirrorKit: 1ffe90515162535b1125109521dd9e045137ce4e
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MirrorKit: 93e1e330e241a5e958d0d6b19be90502c89d60cd
   TBAlertController: cadaec5909aa7af37f4a345fb260ce9b3b0ad0c6
 
-PODFILE CHECKSUM: 25136cb7f33dcf2a5b2b44be2ddd20928b266114
+PODFILE CHECKSUM: 5df5c0b7e16f03e73f48ff07ec54fbf97eb52503
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.8.4
