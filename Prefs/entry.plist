@@ -1,0 +1,10 @@
+{
+    entry = {
+	bundle = SwizzlePrefs;
+	cell = PSLinkCell;
+	detail = SwizzlePrefsListController;
+	isController = 1;
+	label = Swizzle;
+	icon = SettingsIcon.png;
+    };
+}

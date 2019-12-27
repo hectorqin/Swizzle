@@ -28,10 +28,11 @@ IGNORED_WARNINGS += -Wno-unused-command-line-argument -Wno-deprecated-declaratio
 POORLY_EMITTED_WARNINGS = -Wno-incomplete-implementation -Wno-incompatible-pointer-types
 
 TWEAK_NAME = Swizzle
-Swizzle_FILES = $(MY_SOURCES) $(EXT_DEPENDS) $(LOCAL_DEPENDS) Tweak.xm
-Swizzle_FRAMEWORKS = UIKit
-Swizzle_CFLAGS += $(INCLUDES) $(IGNORED_WARNINGS) -fobjc-arc
-Swizzle_CFLAGS += $(POORLY_EMITTED_WARNINGS)
+$(TWEAK_NAME)_FILES = $(MY_SOURCES) $(EXT_DEPENDS) $(LOCAL_DEPENDS) Tweak.xm
+$(TWEAK_NAME)_FRAMEWORKS = UIKit
+$(TWEAK_NAME)_CFLAGS += $(INCLUDES) $(IGNORED_WARNINGS) -fobjc-arc
+$(TWEAK_NAME)_CFLAGS += $(POORLY_EMITTED_WARNINGS)
+$(TWEAK_NAME)_EXTRA_FRAMEWORKS += Cephei
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 
@@ -43,3 +44,6 @@ after-install::
 
 
 print-%  : ; @echo $* = $($*)
+
+SUBPROJECTS += Prefs
+include $(THEOS_MAKE_PATH)/aggregate.mk

@@ -7,11 +7,14 @@
 //
 
 #import "Interfaces.h"
+#import <Cephei/HBPreferences.h>
 
 
 static FLEXToolbarItem * kSwizzleItem = nil;
 static FLEXToolbarItem * kMoveItem = nil;
 static BOOL showingSwizzle = NO;
+HBPreferences *preferences;
+bool tweakEnabled;
 
 FLEXExplorerViewController *TBFLEXExplorerVC() {
     return [(FLEXManager *)[NSClassFromString(@"FLEXManager") sharedManager] explorerViewController];
@@ -26,7 +29,7 @@ void FLEXExplorerToolbarSwapItemWithMoveItem(FLEXExplorerToolbar *toolbar, FLEXT
     toolbar.moveItem = item;
     [items replaceObjectAtIndex:idx withObject:item];
     toolbar.toolbarItems = items;
-    
+
     [toolbar setNeedsLayout];
     [toolbar layoutIfNeeded];
 }
@@ -50,9 +53,9 @@ void FLEXExplorerToolbarSwapItemWithMoveItem(FLEXExplorerToolbar *toolbar, FLEXT
 %hook FLEXExplorerViewController
 - (void)updateButtonStates {
     %orig;
-    
+
     kSwizzleItem.enabled = YES;
-    
+
     if (self.currentMode == FLEXExplorerModeDefault) {
         FLEXToolbarItem *current = self.explorerToolbar.moveItem;
         if (current != kSwizzleItem) {
@@ -71,13 +74,13 @@ void FLEXExplorerToolbarSwapItemWithMoveItem(FLEXExplorerToolbar *toolbar, FLEXT
 %hookf(int, UIApplicationMain, int argc, char *argv[], NSString *principalClassName, NSString *delegateClassName) {
     SwizzleInit();
     FLEXManager *flex = [NSClassFromString(@"FLEXManager") sharedManager];
-    
+
     if (flex) {
         // Create Swizzle button
         UIImage *icon = [NSClassFromString(@"FLEXResources") globeIcon];
         kSwizzleItem = [NSClassFromString(@"FLEXToolbarItem") toolbarItemWithTitle:@"Tweak" image:icon];
         [kSwizzleItem addTarget:flex action:@selector(__toggleSwizzleMenu) forControlEvents:UIControlEventTouchUpInside];
-        
+
         // Add it to the FLEXExplorerViewController toolbar
         %init(Explorer);
     }
@@ -86,5 +89,20 @@ void FLEXExplorerToolbarSwapItemWithMoveItem(FLEXExplorerToolbar *toolbar, FLEXT
 %end
 
 %ctor {
-    %init(Main);
+    preferences = [[HBPreferences alloc] initWithIdentifier:@"com.htmake.swizzle"];
+    [preferences registerBool:&tweakEnabled default:YES forKey:@"Enabled"];
+    bool shouldLoad = NO;
+
+    if (tweakEnabled) {
+        // Hey Snapchat / Snap Inc devs,
+        // This is so users don't get their accounts locked.
+        NSString *bundleID = NSBundle.mainBundle.bundleIdentifier;
+        NSDictionary* blackList=[NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/com.htmake.swizzle-blacklist.plist"];
+        if(!(bundleID!=nil && blackList!=nil &&[blackList.allKeys containsObject:bundleID] &&[[blackList objectForKey:bundleID] boolValue]==YES)){
+            shouldLoad = YES;
+        }
+    }
+    if (shouldLoad) {
+        %init(Main);
+    }
 }

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>ENABLED_LABEL</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.htmake.swizzle</string>
+			<key>label</key>
+			<string>ENABLED</string>
+			<key>key</key>
+			<string>Enabled</string>
+			<key>alternateColors</key>
+			<true/>
+			<key>PostNotification</key>
+			<string>com.htmake.swizzle/ReloadPrefs</string>
+		</dict>
+
+		<!-- select APP list -->
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>CHOOSE_BLACKLIST_APPLICATIONS</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>bundle</key>
+			<string>AppList</string>
+			<key>isController</key>
+			<string>1</string>
+			<key>label</key>
+			<string>CHOOSE_APPLICATIONS</string>
+			<key>ALSettingsDefaultValue</key>
+			<string>0</string>
+			<key>ALSettingsPath</key>
+			<string>/var/mobile/Library/Preferences/com.htmake.swizzle-blacklist.plist</string>
+			<key>ALSettingsKeyPrefix</key>
+			<string></string>
+			<key>ALChangeNotification</key>
+			<string>com.htmake.swizzle/blacklist-changed</string>
+			<key>ALAllowsSelection</key>
+			<string>1</string>
+			<key>ALSectionDescriptors</key>
+			<array>
+				<!-- <dict>
+					<key>items</key>
+					<array>
+						<dict>
+							<key>cell-class-name</key>
+							<string>ALSwitchCell</string>
+							<key>ALSingleEnabledMode</key>
+							<true/>
+							<key>ALSettingsDefaultValue</key>
+							<string>0</string>
+							<key>ALSettingsKey</key>
+							<string>FlexToolEnabled-com.apple.springboard</string>
+							<key>ALChangeNotification</key>
+							<string>com.pba.flextool.springboardsettingschanged</string>
+							<key>ALAllowsSelection</key>
+							<string>1</string>
+							<key>text</key>
+							<string>Springboard</string>
+						</dict>
+					</array>
+					<key>footer-title</key>
+					<string>A respring may be necessary to show the menu on the springboard</string>
+				</dict> -->
+				<dict>
+					<key>title</key>
+					<string>User Applications</string>
+					<key>predicate</key>
+					<string>isSystemApplication = FALSE</string>
+					<key>cell-class-name</key>
+					<string>ALSwitchCell</string>
+					<key>icon-size</key>
+					<string>29</string>
+					<key>suppress-hidden-apps</key>
+					<string>1</string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>System Applications</string>
+					<key>predicate</key>
+					<string>isSystemApplication = TRUE</string>
+					<key>cell-class-name</key>
+					<string>ALSwitchCell</string>
+					<key>icon-size</key>
+					<string>29</string>
+					<key>suppress-hidden-apps</key>
+					<string>1</string>
+					<key>footer-title</key>
+					<string>© 2019 hector</string>
+				</dict>
+			</array>
+		</dict>
+
+		<!-- Credits -->
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>Swizzle by Tanner Bennett</string>
+			<key>isStaticText</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>Preferences by hector</string>
+			<key>isStaticText</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>resetPrefs:</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>isDestructive</key>
+			<true />
+			<key>confirmation</key>
+			<dict>
+				<key>prompt</key>
+				<string>ARE_YOU_SURE_TO_RESET_PREFS</string>
+				<key>title</key>
+				<string>OK</string>
+				<key>okTitle</key>
+				<string>OK</string>
+				<key>cancelTitle</key>
+				<string>CANCEL</string>
+			</dict>
+			<key>label</key>
+			<string>RESET_PREFS</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>respring:</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>isDestructive</key>
+			<true />
+			<key>label</key>
+			<string>RESPRING</string>
+		</dict>
+		<!-- <dict>
+			<key>cellClass</key>
+			<string>HBLinkTableCell</string>
+			<key>label</key>
+			<string>DONATE_TO_NEPETA</string>
+			<key>subtitle</key>
+			<string>SUPPORT_ME</string>
+			<key>url</key>
+			<string>https://nepeta.me/donate</string>
+		</dict> -->
+	</array>
+	<key>title</key>
+	<string>Swizzle</string>
+</dict>
+</plist>

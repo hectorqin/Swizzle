@@ -1,0 +1,9 @@
+{
+  "ENABLED_LABEL" = "Enable auto inject flex";
+  "ENABLED" = "Enabled";
+  "CHOOSE_BLACKLIST_APPLICATIONS" = "Choose blacklist";
+  "CHOOSE_APPLICATIONS" = "Choose applications";
+  "RESET_PREFS" = "Reset prefs";
+  "RESPRING" = "Respring";
+  "ARE_YOU_SURE_TO_RESET_PREFS" = "Are you sure to reset prefs";
+}
